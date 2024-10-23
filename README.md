@@ -9,4 +9,6 @@ FSM is on the script "/sprites/redmage/redmage.gd"
 Link to sample execution:
 n/a
 
+---
+
 First time using Godot. It's pretty handy
