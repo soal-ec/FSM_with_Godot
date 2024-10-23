@@ -9,7 +9,7 @@ FSM code is on the script ["/finite-state-machine-ex/sprites/redmage/redmage.gd"
 ![Test Image 2](/others/FSM.png)
 
 Link to sample execution:
-n/a
+[Video](https://youtu.be/onkVCZGi7Z0)
 
 ---
 
