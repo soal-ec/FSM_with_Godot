@@ -53,7 +53,7 @@ const FSM = {
 	"idle":{"detect":"investigate", "decay":"idle", "outrange":"idle", "sight":"attack", "sight_weak":"run", "die":"death"},
 	"investigate":{"detect":"investigate", "decay":"idle", "outrange":"investigate", "sight":"attack", "sight_weak":"run", "die":"death"},
 	"attack":{"detect":"investigate", "decay":"attack", "outrange":"investigate", "sight":"attack", "sight_weak":"run", "die":"death"},
-	"run": {"detect":"run", "decay":"run", "outrange":"idle", "sight":"attack", "sight_weak":"run", "die":"death"},
+	"run": {"detect":"run", "decay":"run", "outrange":"idle", "sight":"run", "sight_weak":"run", "die":"death"},
 	"death": {"detect":"death", "decay":"death", "outrange":"death", "sight":"death", "sight_weak":"death", "die":"death"}
 }
 var ray_was_colliding = false
