@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://bs8ipst21hrrj"]
+
+[ext_resource type="Script" path="res://player/baba.gd" id="1_iuc4c"]
+[ext_resource type="Texture2D" uid="uid://cvtxxqdsyolko" path="res://player/baba_idle.png" id="2_6pakp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfrnm"]
+
+[node name="Baba" type="Area2D"]
+collision_layer = 14
+collision_mask = 15
+script = ExtResource("1_iuc4c")
+
+[node name="TileSizeRep" type="ColorRect" parent="."]
+visible = false
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="HitboxRep" type="ColorRect" parent="."]
+visible = false
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6pakp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="forward_ray" type="RayCast2D" parent="."]
+collide_with_areas = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rfrnm")

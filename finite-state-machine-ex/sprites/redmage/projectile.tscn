@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bodmlgqwelrtt"]
+
+[ext_resource type="Script" path="res://sprites/redmage/projectile.gd" id="1_k6e7p"]
+[ext_resource type="Texture2D" uid="uid://hsw6n8p7efs2" path="res://sprites/redmage/fireball_1.png" id="2_6ygma"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ic31"]
+size = Vector2(16, 16)
+
+[node name="Projectile" type="Area2D"]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_k6e7p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6ic31")
+
+[node name="fireball_sp" type="Sprite2D" parent="."]
+texture = ExtResource("2_6ygma")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-8, -8, 16, 16)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

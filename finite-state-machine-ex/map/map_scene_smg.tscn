@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=4 uid="uid://wdbduqd342a7"]
+
+[ext_resource type="Script" path="res://map/map_scene_smg.gd" id="1_hdygp"]
+[ext_resource type="Script" path="res://map/layer_holder.gd" id="1_k0o0u"]
+[ext_resource type="PackedScene" uid="uid://tjw1ttqmf8p7" path="res://map/default_tml.tscn" id="2_vxd5j"]
+[ext_resource type="Texture2D" uid="uid://voiilxpqska4" path="res://map/tileset.png" id="3_tlf4d"]
+[ext_resource type="PackedScene" uid="uid://bs8ipst21hrrj" path="res://player/baba.tscn" id="4_mdfhn"]
+[ext_resource type="PackedScene" uid="uid://bpdns4ehbc3ok" path="res://sprites/redmage/redmage.tscn" id="5_jcq81"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4rva1"]
+texture = ExtResource("3_tlf4d")
+texture_region_size = Vector2i(64, 64)
+use_texture_padding = false
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:0/0/custom_data_0 = "solid"
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:1/0/custom_data_0 = "solid"
+1:1/0 = 0
+1:1/0/custom_data_0 = "solid"
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+5:1/0/custom_data_0 = "solid"
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:2/0/custom_data_0 = "solid"
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:2/0/custom_data_0 = "solid"
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:2/0/custom_data_0 = "solid"
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:2/0/custom_data_0 = "solid"
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:0/0/custom_data_0 = "solid"
+
+[sub_resource type="TileSet" id="TileSet_wp4tr"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 9
+physics_layer_0/collision_mask = 9
+custom_data_layer_0/name = "type"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetAtlasSource_4rva1")
+
+[node name="map_smg" type="Node2D"]
+script = ExtResource("1_hdygp")
+
+[node name="layer_holder" type="Node2D" parent="."]
+script = ExtResource("1_k0o0u")
+
+[node name="non-solid" parent="layer_holder" instance=ExtResource("2_vxd5j")]
+tile_map_data = PackedByteArray("AAAJAAEAAAADAAEAAAAKAAEAAAADAAEAAAAKAAIAAAADAAEAAAAKAAMAAAADAAEAAAALAAMAAAADAAEAAAALAAIAAAADAAEAAAAMAAEAAAADAAEAAAAMAAIAAAADAAEAAAAMAAMAAAADAAEAAAANAAMAAAADAAEAAAAOAAEAAAADAAEAAAAOAAIAAAADAAEAAAAOAAMAAAADAAEAAAAJAAIAAAADAAEAAAAJAAMAAAADAAEAAAALAAEAAAADAAEAAAANAAEAAAADAAEAAAANAAIAAAADAAEAAAA=")
+collision_enabled = false
+
+[node name="solids" parent="layer_holder" instance=ExtResource("2_vxd5j")]
+tile_map_data = PackedByteArray("AAACAAIAAAABAAAAAAACAAkAAAABAAAAAAANAAkAAAABAAAAAAACAAQAAAABAAAAAAACAAcAAAABAAAAAAANAAQAAAABAAAAAAANAAcAAAABAAAAAAAMAAQAAAABAAAAAAADAAQAAAABAAAAAAAMAAcAAAABAAAAAAADAAcAAAABAAAAAAAJAAQAAAABAAAAAAAGAAcAAAABAAAAAAAGAAQAAAABAAAAAAAGAAMAAAABAAAAAAAGAAIAAAABAAAAAAAGAAgAAAABAAAAAAAGAAkAAAABAAAAAAALAAcAAAABAAAAAAAEAAcAAAABAAAAAAAEAAQAAAABAAAAAAALAAQAAAABAAAAAAAEAAoAAAABAAAAAAALAAoAAAABAAAAAAAEAAEAAAABAAAAAAACAAoAAAABAAAAAAAJAAcAAAABAAAAAAAJAAgAAAABAAAAAAAJAAkAAAABAAAAAAAIAAQAAAABAAAAAAAIAAMAAAABAAAAAAAIAAIAAAABAAAAAAAIAAEAAAABAAAAAAAOAAQAAAABAAAAAAAKAAQAAAABAAAAAAAAAAAAAAABAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAAAAAADAAAAAAABAAAAAAAEAAAAAAABAAAAAAAFAAAAAAABAAAAAAAGAAAAAAABAAAAAAAHAAAAAAABAAAAAAAIAAAAAAABAAAAAAAPAAQAAAABAAAAAAAPAAUAAAABAAAAAAAPAAYAAAABAAAAAAAPAAcAAAABAAAAAAAPAAgAAAABAAAAAAAPAAkAAAABAAAAAAAPAAoAAAABAAAAAAAPAAsAAAABAAAAAAAOAAsAAAABAAAAAAANAAsAAAABAAAAAAAMAAsAAAABAAAAAAALAAsAAAABAAAAAAAKAAsAAAABAAAAAAAJAAsAAAABAAAAAAAIAAsAAAABAAAAAAAHAAsAAAABAAAAAAAGAAsAAAABAAAAAAAFAAsAAAABAAAAAAAEAAsAAAABAAAAAAADAAsAAAABAAAAAAACAAsAAAABAAAAAAABAAsAAAABAAAAAAAAAAsAAAABAAAAAAAAAAoAAAABAAAAAAAAAAkAAAABAAAAAAAAAAgAAAABAAAAAAAAAAcAAAABAAAAAAAAAAYAAAABAAAAAAAAAAUAAAABAAAAAAAAAAQAAAABAAAAAAAAAAMAAAABAAAAAAAAAAIAAAABAAAAAAAAAAEAAAABAAAAAAAJAAAAAAABAAEAAAAKAAAAAAABAAEAAAALAAAAAAABAAEAAAAMAAAAAAABAAEAAAANAAAAAAABAAEAAAAOAAAAAAABAAEAAAAPAAAAAAABAAEAAAAPAAEAAAABAAEAAAAPAAIAAAABAAEAAAAPAAMAAAABAAEAAAAOAAMAAAABAAEAAAANAAMAAAABAAEAAAAMAAMAAAABAAEAAAALAAMAAAABAAEAAAAKAAMAAAABAAEAAAAJAAMAAAABAAEAAAAJAAEAAAABAAEAAAAKAAEAAAABAAEAAAALAAEAAAABAAEAAAAMAAEAAAABAAEAAAANAAEAAAABAAEAAAAOAAEAAAABAAEAAAAOAAIAAAABAAEAAAANAAIAAAABAAEAAAAMAAIAAAABAAEAAAALAAIAAAABAAEAAAAKAAIAAAABAAEAAAAJAAIAAAABAAEAAAA=")
+tile_set = SubResource("TileSet_wp4tr")
+navigation_enabled = false
+
+[node name="Baba" parent="." instance=ExtResource("4_mdfhn")]
+position = Vector2(88, 83)
+
+[node name="RedMage" parent="." instance=ExtResource("5_jcq81")]
+position = Vector2(723, 591)

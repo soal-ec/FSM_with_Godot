@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpdns4ehbc3ok"]
+
+[ext_resource type="Script" path="res://sprites/redmage/redmage.gd" id="1_brxsb"]
+[ext_resource type="Texture2D" uid="uid://dg46usypqvtmq" path="res://sprites/redmage/redmage_active.png" id="1_f5ik5"]
+[ext_resource type="Texture2D" uid="uid://b8gjkplq5f7o7" path="res://sprites/redmage/firestore_1.png" id="2_h8frv"]
+[ext_resource type="Texture2D" uid="uid://c47svl2fos2ml" path="res://sprites/redmage/ellipses_thought.png" id="4_mllg3"]
+[ext_resource type="Texture2D" uid="uid://dh647sw7pgw3o" path="res://sprites/redmage/cross.png" id="5_wcko3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ymgi1"]
+size = Vector2(48, 48)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2tndw"]
+radius = 352.0
+
+[node name="RedMage" type="Node2D"]
+script = ExtResource("1_brxsb")
+
+[node name="Body" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 3
+
+[node name="coll_box" type="CollisionShape2D" parent="Body"]
+shape = SubResource("RectangleShape2D_ymgi1")
+
+[node name="scanners" type="Node2D" parent="Body"]
+
+[node name="hearing_scan" type="Area2D" parent="Body/scanners"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/scanners/hearing_scan"]
+shape = SubResource("CircleShape2D_2tndw")
+
+[node name="north_scan" type="RayCast2D" parent="Body/scanners"]
+target_position = Vector2(0, -960)
+collision_mask = 8
+collide_with_areas = true
+
+[node name="south_scan" type="RayCast2D" parent="Body/scanners"]
+target_position = Vector2(0, 960)
+collision_mask = 8
+collide_with_areas = true
+
+[node name="east_scan" type="RayCast2D" parent="Body/scanners"]
+target_position = Vector2(960, 0)
+collision_mask = 8
+collide_with_areas = true
+
+[node name="west_scan" type="RayCast2D" parent="Body/scanners"]
+target_position = Vector2(-960, 0)
+collision_mask = 8
+collide_with_areas = true
+
+[node name="main_body_sprite" type="Sprite2D" parent="Body"]
+texture = ExtResource("1_f5ik5")
+
+[node name="stored_fire" type="Sprite2D" parent="Body"]
+texture = ExtResource("2_h8frv")
+
+[node name="thoughts" type="Sprite2D" parent="Body"]
+modulate = Color(1, 1, 1, 0.772549)
+position = Vector2(-64, -64)
+texture = ExtResource("4_mllg3")
+
+[node name="ammo_count" type="Label" parent="Body"]
+modulate = Color(0.0643928, 0.466009, 0.597149, 1)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -48.0
+offset_right = 16.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0/0"
+horizontal_alignment = 1
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Body"]
+remote_path = NodePath("../../Node2D/last_seen")
+update_position = false
+update_rotation = false
+update_scale = false
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="last_seen" type="Sprite2D" parent="Node2D"]
+visible = false
+modulate = Color(1, 1, 1, 0.768627)
+top_level = true
+texture = ExtResource("5_wcko3")
+
+[connection signal="area_exited" from="Body/scanners/hearing_scan" to="." method="_on_hearing_scan_area_exited"]

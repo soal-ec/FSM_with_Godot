@@ -1,0 +1,83 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuivq7rwts1qn"]
+
+[ext_resource type="Texture2D" uid="uid://cvtxxqdsyolko" path="res://player/baba_idle.png" id="1_njyme"]
+[ext_resource type="Script" path="res://v_box_container.gd" id="2_s2em7"]
+[ext_resource type="Texture2D" uid="uid://shc0foikaa8b" path="res://sprites/redmage/redmage_cast1.png" id="2_yok7h"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.124
+anchor_bottom = 0.128
+offset_left = 70.0
+offset_top = 216.0
+offset_right = 83.024
+offset_bottom = 251.696
+texture = ExtResource("1_njyme")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 450.0
+offset_right = 370.0
+offset_bottom = 706.0
+script = ExtResource("2_s2em7")
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+modulate = Color(0.118581, 0.118581, 0.118581, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Start Game"
+
+[node name="Normal" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Normal"
+alignment = 0
+
+[node name="SMG" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "SMG"
+alignment = 0
+
+[node name="Flamethrower" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Flamethrower"
+alignment = 0
+
+[node name="Beam" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Beamer"
+alignment = 0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 787.0
+offset_top = 198.0
+offset_right = 945.0
+offset_bottom = 359.0
+texture = ExtResource("2_yok7h")
+flip_h = true
+
+[connection signal="pressed" from="VBoxContainer/Normal" to="VBoxContainer" method="_on_normal_pressed"]
+[connection signal="pressed" from="VBoxContainer/SMG" to="VBoxContainer" method="_on_smg_pressed"]
+[connection signal="pressed" from="VBoxContainer/Flamethrower" to="VBoxContainer" method="_on_rapid_pressed"]
+[connection signal="pressed" from="VBoxContainer/Beam" to="VBoxContainer" method="_on_beam_pressed"]
