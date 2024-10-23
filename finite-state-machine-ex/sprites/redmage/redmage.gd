@@ -181,7 +181,7 @@ func ray_scan() -> bool:
 						update_behaviour("sight")
 					else:
 						update_behaviour("sight_weak")
-					last_seen.global_position = collider.global_position
+					last_seen.global_position = snap_pos(collider.global_position)
 					ray_was_colliding = true
 				a_ray_has_coll = true
 				fire_projectile(scan)
@@ -193,7 +193,7 @@ func area_scan() -> bool:
 	if hearing_scan.has_overlapping_areas():
 		for area in hearing_scan.get_overlapping_areas():
 			if area.is_in_group("player"):
-				last_seen.global_position = area.global_position
+				last_seen.global_position = snap_pos(area.global_position)
 				if !ray_was_colliding:
 					if state == "run":
 						update_behaviour("sight_weak")
@@ -208,7 +208,7 @@ func _on_hearing_scan_area_exited(area: Area2D) -> void:
 	if area.is_in_group("player"):
 		if !ray_scan():
 			update_behaviour("outrange")
-			last_seen.global_position = area.global_position
+			last_seen.global_position = snap_pos(area.global_position)
 			last_seen.visible = true
 
 
@@ -249,6 +249,7 @@ func all_counters(delta: float):
 	scan_timer -= delta
 
 func snap_pos(pos):
+	pos = pos-Vector2(tile_size/2, tile_size/2)
 	pos = pos.snapped(Vector2.ONE * tile_size)
 	pos += Vector2.ONE * tile_size/2
 	return pos
@@ -264,9 +265,9 @@ func move():
 		stored_fire.flip_h = true
 	# move code
 	var dist = 2
-	if state == "idle":
+	if state == "investigate":
 		dist = 0
-	if current_path.size() > dist and !moving:
+	if current_path.size() >= dist and !moving:
 		var target_position = solids.map_to_local(current_path.front())
 		# move method 1 
 		#global_position = global_position.move_toward(target_position, animation_speed/4)
@@ -280,6 +281,8 @@ func move():
 		moving = false
 		if global_position == target_position:
 			current_path.pop_front
+			if current_path.size() < 1:
+				last_seen.visible = false
 	#elif state == "run":
 		#var target_position = 
 		#

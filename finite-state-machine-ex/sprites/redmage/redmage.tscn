@@ -10,7 +10,7 @@
 size = Vector2(48, 48)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2tndw"]
-radius = 352.0
+radius = 256.0
 
 [node name="RedMage" type="Node2D"]
 script = ExtResource("1_brxsb")
